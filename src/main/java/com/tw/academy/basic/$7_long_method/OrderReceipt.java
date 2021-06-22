@@ -26,11 +26,29 @@ public class OrderReceipt {
     public String printReceipt() {
         StringBuilder receipt = new StringBuilder();
 
-        receipt.append(RECEIPT_HEADER);
+        constructHeader(receipt);
+        constructCustomerInfo(receipt);
+        constructItemInfo(receipt);
 
+        constrcuctAmountAndTax(receipt);
+        return receipt.toString();
+    }
+
+    private void constrcuctAmountAndTax(StringBuilder receipt) {
+        receipt.append(RECEIPT_SALES_TAX).append('\t').append(calculateTotalSalesTax());
+        receipt.append(RECEIPT_TOTAL_AMOUNT).append('\t').append(calculateTotalAmount());
+    }
+
+    private void constructHeader(StringBuilder receipt) {
+        receipt.append(RECEIPT_HEADER);
+    }
+
+    private void constructCustomerInfo(StringBuilder receipt) {
         receipt.append(order.getCustomerName());
         receipt.append(order.getCustomerAddress());
+    }
 
+    private void constructItemInfo(StringBuilder receipt) {
         for (LineItem lineItem : order.getLineItems()) {
             receipt.append(lineItem.getDescription());
             receipt.append('\t');
@@ -42,11 +60,6 @@ public class OrderReceipt {
             receipt.append('\n');
 
         }
-
-        receipt.append(RECEIPT_SALES_TAX).append('\t').append(calculateTotalSalesTax());
-
-        receipt.append(RECEIPT_TOTAL_AMOUNT).append('\t').append(calculateTotalAmount());
-        return receipt.toString();
     }
 
     private double calculateTotalAmount() {
