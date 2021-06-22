@@ -4,9 +4,9 @@ public class DeliveryManager {
     String toAddress;
     String fromAddress;
 
-    public DeliveryManager(String fromAddress, String toAddress) {
-        this.toAddress = toAddress;
-        this.fromAddress = fromAddress;
+    public DeliveryManager(Address fromAddress, Address toAddress) {
+        this.toAddress = toAddress.getAddress();
+        this.fromAddress = fromAddress.getAddress();
     }
 
     public DeliverCenter allocate(){
