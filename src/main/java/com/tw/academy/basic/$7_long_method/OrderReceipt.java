@@ -31,8 +31,6 @@ public class OrderReceipt {
         receipt.append(order.getCustomerName());
         receipt.append(order.getCustomerAddress());
 
-        double totalSalesTax = 0d;
-        double totalAmount = 0d;
         for (LineItem lineItem : order.getLineItems()) {
             receipt.append(lineItem.getDescription());
             receipt.append('\t');
@@ -43,15 +41,32 @@ public class OrderReceipt {
             receipt.append(lineItem.totalAmount());
             receipt.append('\n');
 
-            double salesTax = lineItem.totalAmount() * TAX_RATE;
-            totalSalesTax += salesTax;
-
-            totalAmount += lineItem.totalAmount() + salesTax;
         }
 
-        receipt.append(RECEIPT_SALES_TAX).append('\t').append(totalSalesTax);
+        receipt.append(RECEIPT_SALES_TAX).append('\t').append(calculateTotalSalesTax());
 
-        receipt.append(RECEIPT_TOTAL_AMOUNT).append('\t').append(totalAmount);
+        receipt.append(RECEIPT_TOTAL_AMOUNT).append('\t').append(calculateTotalAmount());
         return receipt.toString();
     }
+
+    private double calculateTotalAmount() {
+        double totalAmount = 0d;
+        for (LineItem lineItem : order.getLineItems()) {
+            totalAmount += lineItem.totalAmount() + calculateTaxAmount(lineItem);
+        }
+        return totalAmount;
+    }
+
+    private double calculateTotalSalesTax() {
+        double totalSalesTax = 0d;
+        for (LineItem lineItem : order.getLineItems()) {
+            totalSalesTax += calculateTaxAmount(lineItem);
+        }
+        return totalSalesTax;
+    }
+
+    private double calculateTaxAmount(LineItem lineItem) {
+        return lineItem.totalAmount() * TAX_RATE;
+    }
+
 }
