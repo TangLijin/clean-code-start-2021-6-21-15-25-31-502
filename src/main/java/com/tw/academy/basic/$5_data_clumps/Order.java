@@ -7,7 +7,6 @@ public class Order {
 
     public Order(int orderNumber, User user) {
         this.orderNumber = orderNumber;
-
         this.user = user;
     }
 
