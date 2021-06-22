@@ -7,9 +7,6 @@ public class Address {
         this.address = address;
     }
 
-    public String getAddress() {
-        return address;
-    }
 
     public String getProvince() {
         return address.substring(0, address.indexOf("省"));
