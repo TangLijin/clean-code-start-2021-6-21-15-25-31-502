@@ -1,12 +1,16 @@
 package com.tw.academy.basic.$6_primitive_obsession.practiceOne;
 
 public class DeliveryManager {
+    private final Address toAddress1;
+    private final Address fromAddress1;
     String toAddress;
     String fromAddress;
 
     public DeliveryManager(Address fromAddress, Address toAddress) {
-        this.toAddress = toAddress.getAddress();
-        this.fromAddress = fromAddress.getAddress();
+        this.toAddress1 = toAddress;
+        this.fromAddress1 = fromAddress;
+        this.toAddress = this.toAddress1.getAddress();
+        this.fromAddress = this.fromAddress1.getAddress();
     }
 
     public DeliverCenter allocate(){
