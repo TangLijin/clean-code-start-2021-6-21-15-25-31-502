@@ -12,6 +12,8 @@ public class OrderReceipt {
     public static final double TAX_RATE = .10;
     public static final String RECEIPT_SALES_TAX = "Sales Tax";
     public static final String RECEIPT_TOTAL_AMOUNT = "Total Amount";
+    public static final char SEPARATOR = '\t';
+    public static final char LINE_SEPARATOR = '\n';
     private Order order;
 
     public OrderReceipt(Order order) {
@@ -35,8 +37,8 @@ public class OrderReceipt {
     }
 
     private void constrcuctAmountAndTax(StringBuilder receipt) {
-        receipt.append(RECEIPT_SALES_TAX).append('\t').append(calculateTotalSalesTax());
-        receipt.append(RECEIPT_TOTAL_AMOUNT).append('\t').append(calculateTotalAmount());
+        receipt.append(RECEIPT_SALES_TAX).append(SEPARATOR).append(calculateTotalSalesTax());
+        receipt.append(RECEIPT_TOTAL_AMOUNT).append(SEPARATOR).append(calculateTotalAmount());
     }
 
     private void constructHeader(StringBuilder receipt) {
@@ -51,13 +53,13 @@ public class OrderReceipt {
     private void constructItemInfo(StringBuilder receipt) {
         for (LineItem lineItem : order.getLineItems()) {
             receipt.append(lineItem.getDescription());
-            receipt.append('\t');
+            receipt.append(SEPARATOR);
             receipt.append(lineItem.getPrice());
-            receipt.append('\t');
+            receipt.append(SEPARATOR);
             receipt.append(lineItem.getQuantity());
-            receipt.append('\t');
+            receipt.append(SEPARATOR);
             receipt.append(lineItem.totalAmount());
-            receipt.append('\n');
+            receipt.append(LINE_SEPARATOR);
 
         }
     }
