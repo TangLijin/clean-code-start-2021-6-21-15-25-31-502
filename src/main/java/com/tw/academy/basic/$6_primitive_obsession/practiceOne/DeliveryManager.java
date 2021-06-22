@@ -20,18 +20,11 @@ public class DeliveryManager {
     }
 
     private boolean isSameCity() {
-        return getCity(this.toAddress.getAddress()).equals(getCity(this.fromAddress.getAddress()));
+        return toAddress.getCity().equals(fromAddress.getCity());
     }
 
     private boolean isSameProvince() {
-        return getProvince(this.toAddress.getAddress()).equals(getProvince(this.fromAddress.getAddress()));
+        return toAddress.getProvince().equals(fromAddress.getProvince());
     }
 
-    private String getCity(String address) {
-        return address.substring(address.indexOf("省") + 1, address.indexOf("市"));
-    }
-
-    private String getProvince(String address) {
-        return address.substring(0, address.indexOf("省"));
-    }
 }
