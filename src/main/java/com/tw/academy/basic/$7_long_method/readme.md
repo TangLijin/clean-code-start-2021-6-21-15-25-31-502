@@ -15,3 +15,6 @@
 #### Long Method
 printReceipt()方法
 
+#### Feature Envy
+计算税和订单总金额应该放到Order类中进行
+

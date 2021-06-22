@@ -9,7 +9,7 @@ package com.tw.academy.basic.$7_long_method;
  */
 public class OrderReceipt {
     public static final String RECEIPT_HEADER = "======Printing Orders======\n";
-    public static final double TAX_RATE = .10;
+//    public static final double TAX_RATE = .10;
     public static final String RECEIPT_SALES_TAX = "Sales Tax";
     public static final String RECEIPT_TOTAL_AMOUNT = "Total Amount";
     public static final char SEPARATOR = '\t';
@@ -37,8 +37,8 @@ public class OrderReceipt {
     }
 
     private void constrcuctAmountAndTax(StringBuilder receipt) {
-        receipt.append(RECEIPT_SALES_TAX).append(SEPARATOR).append(calculateTotalSalesTax());
-        receipt.append(RECEIPT_TOTAL_AMOUNT).append(SEPARATOR).append(calculateTotalAmount());
+        receipt.append(RECEIPT_SALES_TAX).append(SEPARATOR).append(order.calculateTotalSalesTax());
+        receipt.append(RECEIPT_TOTAL_AMOUNT).append(SEPARATOR).append(order.calculateTotalAmount());
     }
 
     private void constructHeader(StringBuilder receipt) {
@@ -64,24 +64,24 @@ public class OrderReceipt {
         }
     }
 
-    private double calculateTotalAmount() {
-        double totalAmount = 0d;
-        for (LineItem lineItem : order.getLineItems()) {
-            totalAmount += lineItem.totalAmount() + calculateTaxAmount(lineItem);
-        }
-        return totalAmount;
-    }
-
-    private double calculateTotalSalesTax() {
-        double totalSalesTax = 0d;
-        for (LineItem lineItem : order.getLineItems()) {
-            totalSalesTax += calculateTaxAmount(lineItem);
-        }
-        return totalSalesTax;
-    }
-
-    private double calculateTaxAmount(LineItem lineItem) {
-        return lineItem.totalAmount() * TAX_RATE;
-    }
+//    private double calculateTotalAmount() {
+//        double totalAmount = 0d;
+//        for (LineItem lineItem : order.getLineItems()) {
+//            totalAmount += lineItem.totalAmount() + calculateTaxAmount(lineItem);
+//        }
+//        return totalAmount;
+//    }
+//
+//    private double calculateTotalSalesTax() {
+//        double totalSalesTax = 0d;
+//        for (LineItem lineItem : order.getLineItems()) {
+//            totalSalesTax += calculateTaxAmount(lineItem);
+//        }
+//        return totalSalesTax;
+//    }
+//
+//    private double calculateTaxAmount(LineItem lineItem) {
+//        return lineItem.totalAmount() * TAX_RATE;
+//    }
 
 }
