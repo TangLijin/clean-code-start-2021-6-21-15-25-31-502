@@ -8,6 +8,10 @@ package com.tw.academy.basic.$7_long_method;
  * @since   2018-1-1
  */
 public class OrderReceipt {
+    public static final String RECEIPT_HEADER = "======Printing Orders======\n";
+    public static final double TAX_RATE = .10;
+    public static final String RECEIPT_SALES_TAX = "Sales Tax";
+    public static final String RECEIPT_TOTAL_AMOUNT = "Total Amount";
     private Order o;
 
     public OrderReceipt(Order o) {
@@ -24,7 +28,7 @@ public class OrderReceipt {
         StringBuilder output = new StringBuilder();
 
         // print headers
-        output.append("======Printing Orders======\n");
+        output.append(RECEIPT_HEADER);
 
         // print date, bill no, customer name
 //        output.append("Date - " + order.getDate();
@@ -46,7 +50,7 @@ public class OrderReceipt {
             output.append('\n');
 
             // calculate sales tax @ rate of 10%
-            double salesTax = lineItem.totalAmount() * .10;
+            double salesTax = lineItem.totalAmount() * TAX_RATE;
             totSalesTx += salesTax;
 
             // calculate total amount of lineItem = price * quantity + 10 % sales tax
@@ -54,10 +58,10 @@ public class OrderReceipt {
         }
 
         // prints the state tax
-        output.append("Sales Tax").append('\t').append(totSalesTx);
+        output.append(RECEIPT_SALES_TAX).append('\t').append(totSalesTx);
 
         // print total amount
-        output.append("Total Amount").append('\t').append(tot);
+        output.append(RECEIPT_TOTAL_AMOUNT).append('\t').append(tot);
         return output.toString();
     }
 }
