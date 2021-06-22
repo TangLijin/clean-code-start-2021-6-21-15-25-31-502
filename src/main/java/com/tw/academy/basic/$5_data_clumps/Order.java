@@ -12,7 +12,7 @@ public class Order {
 
     public String confirm(){
         return String.format("Please confirm buyer information: buyer name is %s, " +
-                "buyer phone number is %s and buyer address is %s.", this.user.getBuyerName(), this.user.getBuyerPhoneNumber(), this.user.getBuyerAddress());
+                "buyer phone number is %s and buyer address is %s.", this.user.getUserName(), this.user.getUserPhoneNumber(), this.user.getUserAddress());
     }
 }
 
